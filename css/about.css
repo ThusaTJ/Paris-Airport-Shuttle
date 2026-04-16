@@ -981,7 +981,7 @@
     .vs-img-stage {
         background:var(--navy-card); border:1px solid var(--border-blue);
         border-radius:24px; padding:2.5rem 2rem 1.5rem;
-        box-shadow:0 0 80px rgba(37,99,235,.15); position:relative; overflow:hidden;
+        box-shadow:0 0 80px rgba(37,99,235,.15); position:relative; overflow:hidden; padding-top: 75px;
     }
     .vs-img-stage::before {
         content:''; position:absolute; inset:0;
@@ -999,7 +999,7 @@
         color:var(--grey); letter-spacing:2px; text-transform:uppercase;
     }
     .vs-popular {
-        position:absolute; top:-14px; left:50%; transform:translateX(-50%);
+        position:absolute; top:30px; left:50%; transform:translateX(-50%);
         background:linear-gradient(135deg,var(--blue),var(--cyan));
         color:var(--white); font-family:'Syne',sans-serif;
         font-size:.65rem; font-weight:700; letter-spacing:2px; text-transform:uppercase;
@@ -1769,6 +1769,7 @@
     .faq-q-text {
         font-family:'Syne',sans-serif; font-size:.97rem; font-weight:700;
         color:var(--white); line-height:1.4; transition:color .2s;
+        margin-left: 5px;
     }
     .faq-item.open .faq-q-text { color:var(--blue-light); }
 
@@ -2284,206 +2285,6 @@
         .trip-tabs { flex-wrap:wrap; }
         .trip-tab { flex:1 1 calc(50% - 4px); }
         .ts-stats { gap:1rem; }
-    }
-
-    /* Responsive guardrails shared across inner pages */
-    .svc-nav,
-    .fleet-nav {
-        top:calc(var(--topbar-h) + var(--nav-h));
-    }
-
-    .svc-section {
-        scroll-margin-top:calc(var(--topbar-h) + var(--nav-h) + 56px);
-    }
-
-    .vehicle-section {
-        scroll-margin-top:calc(var(--topbar-h) + var(--nav-h) + 58px);
-    }
-
-    .faq-sidebar {
-        top:calc(var(--topbar-h) + var(--nav-h) + 2rem);
-    }
-
-    .faq-category {
-        scroll-margin-top:calc(var(--topbar-h) + var(--nav-h) + 1.5rem);
-    }
-
-    .main-nav.topbar-hidden ~ .svc-nav,
-    .topbar.hidden ~ .svc-nav,
-    .main-nav.topbar-hidden ~ .fleet-nav,
-    .topbar.hidden ~ .fleet-nav {
-        top:var(--nav-h);
-    }
-
-    .main-nav.topbar-hidden ~ .svc-section,
-    .topbar.hidden ~ .svc-section {
-        scroll-margin-top:calc(var(--nav-h) + 56px);
-    }
-
-    .main-nav.topbar-hidden ~ .vehicle-section,
-    .topbar.hidden ~ .vehicle-section {
-        scroll-margin-top:calc(var(--nav-h) + 58px);
-    }
-
-    .main-nav.topbar-hidden ~ .faq-main .faq-sidebar,
-    .topbar.hidden ~ .faq-main .faq-sidebar {
-        top:calc(var(--nav-h) + 2rem);
-    }
-
-    .main-nav.topbar-hidden ~ .faq-main .faq-category,
-    .topbar.hidden ~ .faq-main .faq-category {
-        scroll-margin-top:calc(var(--nav-h) + 1.5rem);
-    }
-
-    .faq-search-input {
-        min-width:0;
-    }
-
-    .qs-value,
-    .ic-value,
-    .od-value {
-        overflow-wrap:anywhere;
-    }
-
-    .story-grid > *,
-    .promise-grid > *,
-    .routes-grid > *,
-    .svc-layout > *,
-    .vs-layout > *,
-    .std-grid > *,
-    .faq-layout > *,
-    .cm-grid > *,
-    .office-grid > *,
-    .alt-grid > *,
-    .all-services-grid > *,
-    .vehicle-cards > *,
-    .notes-grid > *,
-    .popular-grid > * {
-        min-width:0;
-    }
-
-    .rr-name,
-    .rr-sub,
-    .db-desc,
-    .faq-q-text,
-    .faq-answer,
-    .scc-phone,
-    .cs-left p {
-        overflow-wrap:anywhere;
-    }
-
-    .cmp-table {
-        min-width:720px;
-    }
-
-    @media (max-width:768px) {
-        .promise-visual {
-            height:auto;
-        }
-
-        .pv-main,
-        .pv-secondary,
-        .pv-rating {
-            position:static;
-            width:100%;
-        }
-
-        .pv-main {
-            height:320px;
-        }
-
-        .pv-secondary {
-            height:180px;
-            border-width:1px;
-        }
-
-        .pv-rating {
-            justify-content:center;
-        }
-
-        .panel-topbar {
-            gap:1rem;
-        }
-
-        .ptb-note {
-            width:100%;
-            text-align:left;
-        }
-
-        .db-content {
-            min-width:0;
-        }
-    }
-
-    @media (max-width:600px) {
-        .origin-btn {
-            flex:1 1 calc(50% - 6px);
-            min-width:0;
-        }
-
-        .db-btn {
-            display:flex;
-            width:100%;
-            justify-content:center;
-        }
-    }
-
-    @media (max-width:480px) {
-        .faq-search-wrap {
-            flex-wrap:wrap;
-            padding:.75rem 1rem;
-        }
-
-        .faq-search-btn {
-            width:100%;
-        }
-
-        .qs-inner,
-        .why-strip-inner,
-        .ws-inner,
-        .tb-inner,
-        .rates-stats-inner {
-            grid-template-columns:1fr;
-        }
-
-        .qs-item::after {
-            display:none;
-        }
-
-        .ib-title,
-        .fs-title {
-            white-space:normal;
-        }
-
-        .origin-btn,
-        .faq-cat-btn {
-            flex-basis:100%;
-        }
-
-        .story-badge-card,
-        .svc-info-card {
-            min-width:0;
-            width:100%;
-        }
-
-        .pv-main {
-            height:260px;
-        }
-
-        .pv-secondary {
-            height:150px;
-        }
-
-        .svc-action,
-        .vs-action {
-            flex-direction:column;
-        }
-
-        .svc-action a,
-        .vs-action a {
-            width:100%;
-            justify-content:center;
-        }
     }
 
     

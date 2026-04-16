@@ -25,7 +25,7 @@
     --topbar-h:     44px;
     --nav-h:        76px;
     --radius:       12px;
-    --page-max-width: 1440px;
+    --page-max-width: 1280px;
     --page-shell-width: min(75vw, var(--page-max-width));
     --chrome-shell-width: min(calc(100vw - 2rem), var(--page-max-width));
 }
@@ -319,7 +319,7 @@ a { text-decoration:none; }
 
 .hero-title {
     font-family:'Syne',sans-serif; font-weight:800;
-    font-size:clamp(2.8rem,5.5vw,5.2rem);
+    font-size:clamp(2rem,4vw,4rem);
     color:var(--white); line-height:1; letter-spacing:-1.5px;
     margin-bottom:1.5rem;
     animation:fadeSlideUp .8s .25s both;
@@ -969,7 +969,7 @@ a { text-decoration:none; }
 .footer-col ul { list-style:none; }
 .footer-col li { margin-bottom:.5rem; }
 .footer-col a {
-    font-size:.88rem; color:var(--grey); transition:color .2s,padding-left .2s;
+    font-size:.85rem; color:var(--grey); transition:color .2s,padding-left .2s;
     display:inline-flex; align-items:center; gap:6px;
 }
 .footer-col a:hover { color:var(--blue-light); padding-left:4px; }
