@@ -190,7 +190,7 @@ a { text-decoration:none; }
     transform:scaleX(0); transform-origin:left; transition:transform .25s ease;
     border-radius:2px;
 }
-.nav-link:hover, .nav-link.active { color:var(--white); }
+.nav-link:hover, .nav-link.active { color:var(--cyan); }
 .nav-link:hover::after, .nav-link.active::after { transform:scaleX(1); }
 
 .nav-cta-btn {
