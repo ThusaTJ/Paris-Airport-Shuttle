@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════
-   PARIS AIRPORT SHUTTLE — styles.css
+   PARIS AIRPORT SHUTTLE — styles.css  (responsive fix)
    Color: Deep Navy + Electric Blue + White
 ════════════════════════════════════════════════════════ */
 
@@ -26,19 +26,20 @@
     --nav-h:        76px;
     --radius:       12px;
     --page-max-width: 1280px;
-    --page-shell-width: min(75vw, var(--page-max-width));
+    /* FIX: was min(75vw,…) which was too narrow on tablets */
+    --page-shell-width: min(92vw, var(--page-max-width));
     --chrome-shell-width: min(calc(100vw - 2rem), var(--page-max-width));
 }
 
 /* ── RESET ──────────────────────────────────────────── */
 *,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; margin-top:0 !important; }
+html { scroll-behavior:smooth; margin-top:0 !important; overflow-x:clip; }
 
 body {
     font-family:'DM Sans',sans-serif;
     background:var(--navy);
     color:var(--white);
-    overflow-x:hidden;
+    overflow-x:clip;
     padding-top:calc(var(--topbar-h) + var(--nav-h));
     top:0 !important;
     position:static !important;
@@ -47,7 +48,6 @@ body {
 img { display:block; max-width:100%; }
 a { text-decoration:none; }
 
-/* ── GOOGLE TRANSLATE SUPPRESS ─────────────────────── */
 /* ── LAYOUT ─────────────────────────────────────────── */
 .section-inner {
     width:min(100%, var(--page-shell-width));
@@ -71,7 +71,7 @@ a { text-decoration:none; }
 
 .section-title {
     font-family:'Syne',sans-serif; font-weight:800;
-    font-size:clamp(2.2rem,4vw,3.5rem);
+    font-size:clamp(2rem,4vw,3.5rem);
     color:var(--white); line-height:1.05; margin-bottom:1rem;
 }
 .section-title span { color:var(--blue-light); }
@@ -87,9 +87,10 @@ a { text-decoration:none; }
     transition:opacity .75s ease, transform .75s ease;
 }
 .reveal.visible { opacity:1; transform:translateY(0); }
-.reveal-left { opacity:0; transform:translateX(-40px); transition:opacity .8s ease, transform .8s ease; }
+.reveal-left { opacity:0; transform:translateX(-24px); transition:opacity .8s ease, transform .8s ease; }
 .reveal-left.visible { opacity:1; transform:translateX(0); }
-.reveal-right { opacity:0; transform:translateX(40px); transition:opacity .8s ease, transform .8s ease; }
+/* FIX: clip translateX reveals so they never overflow the viewport */
+.reveal-right { opacity:0; transform:translateX(24px); transition:opacity .8s ease, transform .8s ease; }
 .reveal-right.visible { opacity:1; transform:translateX(0); }
 .d1 { transition-delay:.1s; }
 .d2 { transition-delay:.2s; }
@@ -280,10 +281,13 @@ a { text-decoration:none; }
     position:relative; z-index:2;
     width:min(100%, var(--page-shell-width)); max-width:var(--page-max-width);
     margin:0 auto; padding:3rem 0;
-    display:grid; grid-template-columns:1fr 520px;
+    display:grid;
+    /* FIX: use minmax so the booking card shrinks gracefully instead of fixed 520px */
+    grid-template-columns:1fr minmax(0, 480px);
     gap:4rem; align-items:center;
 }
 
+/* prevent all major children from causing overflow */
 .hero-left,
 .booking-card,
 .why-card,
@@ -546,7 +550,8 @@ a { text-decoration:none; }
 .about-section { background:var(--navy); padding:110px 2.5rem; }
 .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
 
-.about-visual { position:relative; }
+/* FIX: contain the absolutely-positioned badge/rating cards that use negative offsets */
+.about-visual { position:relative; padding:1.5rem 2rem 2.5rem; }
 .about-img-wrap {
     border-radius:20px; height:440px; overflow:hidden;
     border:1px solid var(--border-blue);
@@ -556,7 +561,7 @@ a { text-decoration:none; }
 .about-img-wrap:hover img { transform:scale(1.04); }
 
 .about-badge-card {
-    position:absolute; bottom:-1.5rem; right:-1.5rem;
+    position:absolute; bottom:0; right:0;
     background:var(--blue); border-radius:14px; padding:1.5rem 1.8rem;
     text-align:center; box-shadow:0 8px 40px var(--blue-glow);
     animation:floatCard 4s ease-in-out infinite;
@@ -569,7 +574,7 @@ a { text-decoration:none; }
 .badge-label { font-size:.7rem; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,.8); font-weight:600; }
 
 .rating-card {
-    position:absolute; top:1.5rem; left:-1.5rem;
+    position:absolute; top:0; left:0;
     background:var(--navy-card); border:1px solid var(--border-blue);
     border-radius:12px; padding:1rem 1.4rem;
     display:flex; align-items:center; gap:.8rem;
@@ -589,7 +594,7 @@ a { text-decoration:none; }
     border-left:3px solid var(--blue); border-radius:10px;
     transition:all .3s;
 }
-.feat-card:hover { border-color:var(--border-blue); border-left-color:var(--cyan); transform:translateX(5px); }
+.feat-card:hover { border-color:var(--border-blue); border-left-color:var(--cyan); }
 .feat-icon {
     width:42px; height:42px; flex-shrink:0; background:var(--blue-dim);
     border-radius:10px; display:flex; align-items:center; justify-content:center;
@@ -859,7 +864,7 @@ a { text-decoration:none; }
     border-left:3px solid var(--blue); border-radius:12px;
     transition:all .3s;
 }
-.contact-card:hover { border-color:var(--border-blue); transform:translateX(5px); }
+.contact-card:hover { border-color:var(--border-blue); }
 .cc-icon {
     width:44px; height:44px; flex-shrink:0; background:var(--blue-dim);
     border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.1rem;
@@ -926,7 +931,6 @@ a { text-decoration:none; }
 }
 .scroll-top.visible { opacity:1; pointer-events:all; }
 .scroll-top:hover { transform:translateY(-4px) scale(1.1); }
-
 
 /* ══════════════════════════════════════════════════════
    COUNTER
@@ -1005,6 +1009,7 @@ a { text-decoration:none; }
     color:var(--grey-light); letter-spacing:.5px; text-transform:uppercase;
 }
 
+/* safe overflow-wrap on long text */
 .contact-card p,
 .faq-a,
 .footer-brand-desc,
@@ -1016,317 +1021,225 @@ a { text-decoration:none; }
 
 /* ══════════════════════════════════════════════════════
    RESPONSIVE
+   Strategy: mobile-first breakpoints, no contradictions
+   1360 → nav compresses
+   1100 → hamburger appears
+   1024 → hero & 2-col layouts collapse
+    860 → 3-col grids → 2-col
+    640 → 2-col grids → 1-col, sections tighten
+    480 → fine-tune small phones
 ══════════════════════════════════════════════════════ */
+
+/* ── 1360px: tighten nav items ── */
 @media (max-width:1360px) {
     .nav-inner { gap:1rem; }
-    .nav-logo img { height:48px; max-width:min(100%, 190px); }
-    .nav-link {
-        padding:0 .72rem;
-        font-size:.78rem;
-        letter-spacing:.8px;
-    }
-    .nav-cta-btn {
-        margin-left:.25rem;
-        padding:10px 16px;
-        font-size:.76rem;
-    }
+    .nav-logo img { height:48px; max-width:190px; }
+    .nav-link { padding:0 .75rem; font-size:.78rem; letter-spacing:.8px; }
+    .nav-cta-btn { margin-left:.25rem; padding:10px 18px; font-size:.76rem; }
 }
 
-@media (max-width:1240px) {
+/* ── 1100px: switch to hamburger ── */
+@media (max-width:1100px) {
     .nav-hamburger { display:flex; }
     .nav-links {
-        display:none; position:fixed;
+        display:none;
+        position:fixed;
         top:calc(var(--topbar-h) + var(--nav-h));
-        left:0; right:0; background:var(--navy-mid);
+        left:0; right:0;
+        background:var(--navy-mid);
         border-top:1px solid var(--border);
-        flex-direction:column; align-items:flex-start; gap:0; padding:1rem 0 1.5rem;
-        max-height:calc(100vh - var(--topbar-h) - var(--nav-h)); overflow-y:auto;
+        flex-direction:column; align-items:flex-start;
+        gap:0; padding:1rem 0 1.5rem;
+        max-height:calc(100vh - var(--topbar-h) - var(--nav-h));
+        overflow-y:auto;
         box-shadow:0 8px 40px rgba(0,0,0,.6);
+        z-index:999;
     }
-    .main-nav.topbar-hidden .nav-links { top:var(--nav-h); max-height:calc(100vh - var(--nav-h)); }
+    .main-nav.topbar-hidden .nav-links {
+        top:var(--nav-h);
+        max-height:calc(100vh - var(--nav-h));
+    }
     .nav-links.open { display:flex; }
     .nav-links li { width:100%; }
-    .nav-link { line-height:1; padding:13px 1.5rem; width:100%; }
+    .nav-link { line-height:1; padding:14px 1.5rem; width:100%; }
     .nav-link::after { display:none; }
     .nav-cta-btn { margin:.5rem 1.5rem 0; width:calc(100% - 3rem); justify-content:center; }
 }
 
-@media (max-width:1180px) {
-    .topbar-left .topbar-link:last-child { display:none; }
-}
+/* ── 1024px: collapse hero, 2-col layouts, start grid reductions ── */
+@media (max-width:1024px) {
+    /* hero: stack left + booking card */
+    .hero-content {
+        grid-template-columns:1fr;
+        gap:2.5rem;
+        padding:2.5rem 0;
+    }
+    .booking-card { max-width:560px; width:100%; margin:0 auto; }
 
-@media (max-width:900px) {
-    .topbar-inner { justify-content:center; }
+    /* about / faq / contact: stack */
+    .about-grid { grid-template-columns:1fr; gap:2.5rem; }
+    .faq-layout { grid-template-columns:1fr; gap:2.5rem; }
+    .contact-grid { grid-template-columns:1fr; gap:2.5rem; }
+
+    /* 3-col grids → 2-col */
+    .services-grid,
+    .fleet-grid,
+    .rates-grid,
+    .why-grid,
+    .testi-grid { grid-template-columns:repeat(2,1fr); }
+
+    /* about visual tweaks */
+    .about-img-wrap { height:380px; }
+    .rating-card { display:none; }
+
+    /* rates featured card loses scale bump */
+    .rate-card.featured { transform:scale(1); }
+    .rate-card.featured:hover { transform:translateY(-6px); }
+
+    /* footer: 3-col */
+    .footer-inner { grid-template-columns:repeat(3,1fr); }
+
+    /* topbar: hide some items */
     .topbar-right { display:none; }
 }
 
-@media (max-width:1024px) {
-    .hero-content { grid-template-columns:1fr; gap:2.5rem; }
-    .about-grid, .faq-layout, .contact-grid { grid-template-columns:1fr; gap:2.5rem; }
-    .services-grid, .fleet-grid, .rates-grid, .why-grid, .testi-grid { grid-template-columns:repeat(2,1fr); }
-    .about-badge-card { bottom:1rem; right:1rem; }
-    .rating-card { display:none; }
-    .rate-card.featured { transform:scale(1); }
-    .rate-card.featured:hover { transform:translateY(-6px); }
-    .footer-inner { grid-template-columns:1fr 1fr 1fr; }
-}
+/* ── 860px: 2-col grids → 1-col, padding reduction ── */
+@media (max-width:860px) {
+    :root { --page-shell-width: 92vw; }
 
-@media (max-width:900px) {
-    :root { --page-shell-width: 88vw; }
-    .why-section,.about-section,.services-section,.fleet-section,
-    .rates-section,.faq-section,.contact-section,.testimonials-section { padding:70px 1.5rem; }
-    .services-grid,.fleet-grid,.rates-grid,.why-grid,.testi-grid { grid-template-columns:1fr; }
-    .form-grid,.cf-grid { grid-template-columns:1fr; }
-    .hero-content { padding:2rem 0; }
-    .hero-stats { flex-wrap:wrap; }
+    .why-section,
+    .about-section,
+    .services-section,
+    .fleet-section,
+    .rates-section,
+    .faq-section,
+    .contact-section,
+    .testimonials-section { padding:80px 1.5rem; }
+
+    .services-grid,
+    .fleet-grid,
+    .rates-grid,
+    .testi-grid { grid-template-columns:1fr; }
+
+    /* why + rates badge fix */
+    .rate-popular-badge { white-space:normal; text-align:center; max-width:180px; }
+
+    /* form grids → 1-col */
+    .form-grid,
+    .cf-grid { grid-template-columns:1fr; }
+
+    .hero-stats { flex-wrap:wrap; gap:.75rem; }
     .stat-divider { display:none; }
-}
 
-@media (max-width:768px) {
-    .hero { min-height:auto; }
-    .hero-actions { flex-direction:column; }
-    .hero-actions a { width:100%; justify-content:center; }
-    .about-img-wrap { height:300px; }
-    .about-badge-card { position:static; display:inline-block; margin-top:1rem; }
-    .contact-form-wrap { padding:1.75rem; }
-    .footer-inner { grid-template-columns:repeat(2,1fr); gap:1.5rem; }
-    .footer-main,.footer-bottom { padding-left:1.5rem; padding-right:1.5rem; }
+    /* footer: 2-col */
+    .footer-inner { grid-template-columns:repeat(2,1fr); gap:2rem; }
+    .footer-main { padding:3.5rem 1.5rem; }
+    .footer-bottom { padding:1.25rem 1.5rem; }
     .footer-bottom-inner { flex-direction:column; align-items:flex-start; }
 }
 
-@media (max-width:600px) {
+/* ── 640px: single-column everything, small-phone optimisations ── */
+@media (max-width:640px) {
     :root {
-        --topbar-h:0px;
+        --topbar-h: 0px;           /* hide topbar space */
         --page-shell-width: calc(100vw - 2rem);
     }
+
+    /* topbar: actually hide the element */
     .topbar { display:none; }
-    .hero-title { font-size:clamp(2.2rem,10vw,2.8rem); }
-    .hero-content { gap:1.75rem; padding:1.5rem 0 0; }
+
+    /* hero */
+    .hero { min-height:auto; }
+    .hero-content { padding:1.5rem 0 2rem; gap:1.5rem; }
     .hero-left { text-align:center; }
-    .hero-badge,
-    .hero-stats { justify-content:center; }
+    .hero-badge { justify-content:center; }
     .hero-desc { max-width:none; }
-    .hero-stat { flex:1 1 140px; }
-    .booking-card { padding:1.4rem; }
-    .card-header { align-items:flex-start; }
+    .hero-actions { flex-direction:column; }
+    .hero-actions a { width:100%; justify-content:center; }
+    .hero-stats { justify-content:center; }
+    .hero-stat { flex:1 1 calc(50% - .5rem); text-align:center; min-width:120px; }
+
+    /* booking card */
+    .booking-card { padding:1.4rem; border-radius:16px; }
+    .card-header { margin-bottom:1rem; padding-bottom:1rem; }
     .card-pill { white-space:normal; }
     .tab-row { flex-wrap:wrap; }
-    .tab-btn { flex:1 1 calc(50% - 3px); }
-    .marquee-item { font-size:.75rem; letter-spacing:2px; gap:.75rem; }
-    .faq-layout { gap:2rem; }
-    .faq-q { align-items:flex-start; }
-    .faq-toggle { margin-top:.1rem; }
+    .tab-btn { flex:1 1 calc(50% - 3px); font-size:.72rem; padding:10px 8px; }
+
+    /* about */
+    .about-img-wrap { height:260px; }
+    .about-visual { padding:0; }
+    .about-badge-card {
+        position:static; display:block;
+        width:fit-content; margin:1.2rem auto 0;
+        animation:none;
+    }
+
+    /* grids all 1-col */
+    .why-grid { grid-template-columns:1fr; }
+
+    /* sections */
+    .why-section,
+    .about-section,
+    .services-section,
+    .fleet-section,
+    .rates-section,
+    .faq-section,
+    .contact-section,
+    .testimonials-section { padding:60px 1rem; }
+
+    .section-title,
+    .faq-sidebar h2 { font-size:clamp(1.9rem,8vw,2.4rem); }
+
+    /* fleet specs */
+    .fleet-specs { justify-content:center; }
+    .spec { flex:1 1 calc(50% - .5rem); min-width:100px; text-align:center; }
+
+    /* FAQ */
     .faq-sidebar-img { display:none; }
-    .footer-inner { grid-template-columns:1fr; }
-    .footer-bottom-left { flex-direction:column; align-items:flex-start; gap:.4rem; }
+    .faq-q { padding:1.15rem 0; align-items:flex-start; }
+    .faq-q-text { font-size:.93rem; line-height:1.45; }
+
+    /* contact */
+    .contact-form-wrap { padding:1.5rem; }
+
+    /* footer */
+    .footer-inner { grid-template-columns:1fr; gap:2rem; }
+    .footer-main { padding:3rem 1rem; }
+    .footer-bottom { padding:1.25rem 1rem; }
+    .footer-brand-desc { max-width:none; }
+
+    /* misc */
     .scroll-top { right:1rem; bottom:1rem; width:44px; height:44px; }
-}
+    .marquee-item { font-size:.75rem; letter-spacing:2px; }
 
-@media (max-width:480px) {
-    .hero-title { font-size:clamp(2rem,10vw,2.45rem); }
-    .hero-badge { width:100%; justify-content:center; letter-spacing:2px; }
-    .tab-btn { flex-basis:100%; }
-    .contact-form-wrap { padding:1.4rem; }
-
+    /* buttons full-width */
     .btn-primary,
     .btn-outline,
     .btn-book,
-    .btn-submit {
-        width:100%;
-        justify-content:center;
-        text-align:center;
-        white-space:normal;
-        padding-left:1rem;
-        padding-right:1rem;
-    }
-
-    .hero-stats {
-        gap:.75rem;
-        justify-content:center;
-    }
-
-    .hero-stat {
-        flex:1 1 130px;
-        min-width:0;
-        text-align:center;
-    }
-
-    .section-tag,
-    .hero-badge {
-        letter-spacing:2px;
-    }
+    .btn-submit { width:100%; justify-content:center; }
 }
 
-@media (max-width:560px) {
-    .home-page .hero-content {
-        gap:1.25rem;
-        padding-top:1rem;
-    }
+/* ── 480px: very small phones ── */
+@media (max-width:480px) {
+    .hero-title { font-size:clamp(1.85rem,9vw,2.25rem); }
+    .hero-badge { font-size:.68rem; letter-spacing:1.5px; width:100%; justify-content:center; }
+    .hero-stat { flex:1 1 100%; }  /* stack stats vertically on tiny screens */
 
-    .home-page .hero-title {
-        font-size:clamp(1.9rem,9vw,2.35rem);
-        line-height:1.02;
-    }
+    .booking-card { padding:1.2rem; }
+    .contact-form-wrap { padding:1.2rem; }
 
-    .home-page .hero-desc,
-    .home-page .section-sub,
-    .home-page .about-desc,
-    .home-page .faq-sidebar p {
-        font-size:1rem;
-        line-height:1.7;
-    }
+    .rate-card,
+    .testi-card,
+    .contact-card,
+    .why-card,
+    .svc-body,
+    .fleet-body { padding:1.15rem; }
 
-    .home-page .hero-actions {
-        gap:.75rem;
-        margin-bottom:2rem;
-    }
+    .about-badge-card { padding:1.1rem 1.4rem; }
+    .badge-num { font-size:2rem; }
 
-    .home-page .hero-stats {
-        gap:.75rem;
-    }
+    .spec { flex:1 1 100%; }
 
-    .home-page .hero-stat {
-        flex:1 1 calc(50% - .5rem);
-        min-width:0;
-        text-align:center;
-    }
-
-    .home-page .hero-stat:last-child {
-        flex-basis:100%;
-    }
-
-    .home-page .booking-card,
-    .home-page .contact-form-wrap {
-        padding:1.2rem;
-        border-radius:16px;
-    }
-
-    .home-page .card-header {
-        margin-bottom:1rem;
-        padding-bottom:1rem;
-    }
-
-    .home-page .tab-btn {
-        font-size:.72rem;
-        letter-spacing:.8px;
-        padding:10px 8px;
-    }
-
-    .home-page .fld input,
-    .home-page .fld select,
-    .home-page .cf-field input,
-    .home-page .cf-field select,
-    .home-page .cf-field textarea {
-        padding:10px 12px;
-        font-size:.9rem;
-    }
-
-    .home-page .why-section,
-    .home-page .about-section,
-    .home-page .services-section,
-    .home-page .fleet-section,
-    .home-page .rates-section,
-    .home-page .faq-section,
-    .home-page .contact-section,
-    .home-page .testimonials-section {
-        padding:56px 1rem;
-    }
-
-    .home-page .section-title,
-    .home-page .faq-sidebar h2 {
-        font-size:clamp(1.95rem,9vw,2.45rem);
-    }
-
-    .home-page .why-card,
-    .home-page .svc-body,
-    .home-page .fleet-body,
-    .home-page .rate-card,
-    .home-page .testi-card,
-    .home-page .contact-card {
-        padding:1.35rem;
-    }
-
-    .home-page .about-badge-card {
-        width:100%;
-        max-width:220px;
-        margin-left:auto;
-        margin-right:auto;
-        text-align:center;
-    }
-
-    .home-page .fleet-specs {
-        gap:.75rem;
-        justify-content:center;
-    }
-
-    .home-page .spec {
-        flex:1 1 calc(50% - .5rem);
-        min-width:110px;
-        text-align:center;
-    }
-
-    .home-page .rate-popular-badge {
-        width:calc(100% - 2rem);
-        max-width:220px;
-        white-space:normal;
-        text-align:center;
-    }
-
-    .home-page .btn-rate,
-    .home-page .faq-cta {
-        white-space:normal;
-        text-align:center;
-    }
-
-    .home-page .testi-card::before {
-        right:1rem;
-        font-size:4.5rem;
-    }
-
-    .home-page .testi-author {
-        align-items:flex-start;
-    }
-
-    .home-page .faq-q {
-        padding:1.15rem 0;
-        align-items:flex-start;
-    }
-
-    .home-page .faq-q-text {
-        font-size:.95rem;
-        line-height:1.45;
-    }
-
-    .home-page .contact-grid {
-        margin-top:2.5rem;
-    }
-
-    .home-page .contact-info {
-        gap:1rem;
-    }
-
-    .home-page .contact-card p {
-        font-size:.9rem;
-    }
-}
-
-@media (max-width:400px) {
-    .home-page .hero-badge {
-        font-size:.68rem;
-        letter-spacing:1.5px;
-    }
-
-    .home-page .hero-stat,
-    .home-page .spec {
-        flex-basis:100%;
-    }
-
-    .home-page .rate-card,
-    .home-page .testi-card,
-    .home-page .contact-card,
-    .home-page .why-card,
-    .home-page .svc-body,
-    .home-page .fleet-body {
-        padding:1.15rem;
-    }
+    .footer-bottom-left { flex-direction:column; align-items:flex-start; gap:.4rem; }
 }
