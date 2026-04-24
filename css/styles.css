@@ -1156,3 +1156,177 @@ a { text-decoration:none; }
         letter-spacing:2px;
     }
 }
+
+@media (max-width:560px) {
+    .home-page .hero-content {
+        gap:1.25rem;
+        padding-top:1rem;
+    }
+
+    .home-page .hero-title {
+        font-size:clamp(1.9rem,9vw,2.35rem);
+        line-height:1.02;
+    }
+
+    .home-page .hero-desc,
+    .home-page .section-sub,
+    .home-page .about-desc,
+    .home-page .faq-sidebar p {
+        font-size:1rem;
+        line-height:1.7;
+    }
+
+    .home-page .hero-actions {
+        gap:.75rem;
+        margin-bottom:2rem;
+    }
+
+    .home-page .hero-stats {
+        gap:.75rem;
+    }
+
+    .home-page .hero-stat {
+        flex:1 1 calc(50% - .5rem);
+        min-width:0;
+        text-align:center;
+    }
+
+    .home-page .hero-stat:last-child {
+        flex-basis:100%;
+    }
+
+    .home-page .booking-card,
+    .home-page .contact-form-wrap {
+        padding:1.2rem;
+        border-radius:16px;
+    }
+
+    .home-page .card-header {
+        margin-bottom:1rem;
+        padding-bottom:1rem;
+    }
+
+    .home-page .tab-btn {
+        font-size:.72rem;
+        letter-spacing:.8px;
+        padding:10px 8px;
+    }
+
+    .home-page .fld input,
+    .home-page .fld select,
+    .home-page .cf-field input,
+    .home-page .cf-field select,
+    .home-page .cf-field textarea {
+        padding:10px 12px;
+        font-size:.9rem;
+    }
+
+    .home-page .why-section,
+    .home-page .about-section,
+    .home-page .services-section,
+    .home-page .fleet-section,
+    .home-page .rates-section,
+    .home-page .faq-section,
+    .home-page .contact-section,
+    .home-page .testimonials-section {
+        padding:56px 1rem;
+    }
+
+    .home-page .section-title,
+    .home-page .faq-sidebar h2 {
+        font-size:clamp(1.95rem,9vw,2.45rem);
+    }
+
+    .home-page .why-card,
+    .home-page .svc-body,
+    .home-page .fleet-body,
+    .home-page .rate-card,
+    .home-page .testi-card,
+    .home-page .contact-card {
+        padding:1.35rem;
+    }
+
+    .home-page .about-badge-card {
+        width:100%;
+        max-width:220px;
+        margin-left:auto;
+        margin-right:auto;
+        text-align:center;
+    }
+
+    .home-page .fleet-specs {
+        gap:.75rem;
+        justify-content:center;
+    }
+
+    .home-page .spec {
+        flex:1 1 calc(50% - .5rem);
+        min-width:110px;
+        text-align:center;
+    }
+
+    .home-page .rate-popular-badge {
+        width:calc(100% - 2rem);
+        max-width:220px;
+        white-space:normal;
+        text-align:center;
+    }
+
+    .home-page .btn-rate,
+    .home-page .faq-cta {
+        white-space:normal;
+        text-align:center;
+    }
+
+    .home-page .testi-card::before {
+        right:1rem;
+        font-size:4.5rem;
+    }
+
+    .home-page .testi-author {
+        align-items:flex-start;
+    }
+
+    .home-page .faq-q {
+        padding:1.15rem 0;
+        align-items:flex-start;
+    }
+
+    .home-page .faq-q-text {
+        font-size:.95rem;
+        line-height:1.45;
+    }
+
+    .home-page .contact-grid {
+        margin-top:2.5rem;
+    }
+
+    .home-page .contact-info {
+        gap:1rem;
+    }
+
+    .home-page .contact-card p {
+        font-size:.9rem;
+    }
+}
+
+@media (max-width:400px) {
+    .home-page .hero-badge {
+        font-size:.68rem;
+        letter-spacing:1.5px;
+    }
+
+    .home-page .hero-stat,
+    .home-page .spec {
+        flex-basis:100%;
+    }
+
+    .home-page .rate-card,
+    .home-page .testi-card,
+    .home-page .contact-card,
+    .home-page .why-card,
+    .home-page .svc-body,
+    .home-page .fleet-body {
+        padding:1.15rem;
+    }
+}
