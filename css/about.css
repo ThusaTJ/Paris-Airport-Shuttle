@@ -2287,4 +2287,124 @@
         .ts-stats { gap:1rem; }
     }
 
-    
+    /* Shared narrow-phone refinements for inner pages */
+    @media (max-width: 560px) {
+        .page-hero,
+        .story-section,
+        .mission-section,
+        .promise-section,
+        .coverage-section,
+        .about-cta,
+        .svc-section,
+        .all-services-section,
+        .how-section,
+        .airports-section,
+        .svc-cta,
+        .vehicle-section,
+        .fleet-overview,
+        .standards-section,
+        .compare-section,
+        .fleet-cta,
+        .included-section,
+        .rates-section,
+        .vehicle-strip,
+        .notes-section,
+        .rates-cta,
+        .faq-main,
+        .popular-section,
+        .faq-cta,
+        .contact-main,
+        .alt-section,
+        .office-section {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .page-hero-content,
+        .ph-content,
+        .cta-inner,
+        .rc-inner,
+        .fc-inner {
+            max-width: 100%;
+        }
+
+        .page-hero-eyebrow,
+        .ph-eyebrow,
+        .hero-badge {
+            width: 100%;
+            justify-content: center;
+            text-align: center;
+            letter-spacing: 1.5px;
+        }
+
+        .hero-tag-row,
+        .ph-pills,
+        .cta-chips,
+        .cta-guarantees {
+            width: 100%;
+        }
+
+        .hero-pill,
+        .ph-pill,
+        .cta-chip,
+        .cta-guarantees .cta-chip {
+            width: 100%;
+            max-width: 100%;
+            justify-content: center;
+            text-align: center;
+            white-space: normal;
+        }
+
+        .stats-inner,
+        .why-strip-inner,
+        .ws-inner,
+        .tb-inner,
+        .rates-stats-inner,
+        .qs-inner {
+            grid-template-columns: 1fr;
+        }
+
+        .stat-block::after,
+        .rs-block::after,
+        .qs-item::after {
+            display: none;
+        }
+
+        .stat-block,
+        .rs-block,
+        .qs-item {
+            padding-left: 1.25rem;
+            padding-right: 1.25rem;
+        }
+
+        .fs-title,
+        .ib-title,
+        .db-btn,
+        .vc-popular-badge,
+        .vs-popular {
+            white-space: normal;
+            text-align: center;
+        }
+
+        .faq-cat-btn {
+            min-width: 0;
+            flex-basis: 100%;
+        }
+
+        .trip-tab {
+            flex-basis: 100%;
+        }
+
+        .booking-form-wrap {
+            padding: 1.5rem;
+        }
+
+        .ts-stats {
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        .ts-stat {
+            flex: 1 1 calc(50% - .5rem);
+        }
+    }

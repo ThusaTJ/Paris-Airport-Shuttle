@@ -1127,4 +1127,32 @@ a { text-decoration:none; }
     .hero-badge { width:100%; justify-content:center; letter-spacing:2px; }
     .tab-btn { flex-basis:100%; }
     .contact-form-wrap { padding:1.4rem; }
+
+    .btn-primary,
+    .btn-outline,
+    .btn-book,
+    .btn-submit {
+        width:100%;
+        justify-content:center;
+        text-align:center;
+        white-space:normal;
+        padding-left:1rem;
+        padding-right:1rem;
+    }
+
+    .hero-stats {
+        gap:.75rem;
+        justify-content:center;
+    }
+
+    .hero-stat {
+        flex:1 1 130px;
+        min-width:0;
+        text-align:center;
+    }
+
+    .section-tag,
+    .hero-badge {
+        letter-spacing:2px;
+    }
 }
